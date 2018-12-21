@@ -12,13 +12,13 @@ class FlutterToastPlugin(private val registrar: Registrar): MethodCallHandler {
     @JvmStatic
     fun registerWith(registrar: Registrar) {
       val channel = MethodChannel(registrar.messenger(), "flutter_toast")
-      channel.setMethodCallHandler(FlutterToastPlugin())
+      channel.setMethodCallHandler(FlutterToastPlugin(registrar))
     }
   }
 
   override fun onMethodCall(call: MethodCall, result: Result) {
     if (call.method.equals("showToast")) {
-      val message: String = call.argument("message")
+      val message: String = call.argument("message")!!
       Toast.makeText(registrar.context(), message, Toast.LENGTH_LONG).show()
     } else {
       result.notImplemented()

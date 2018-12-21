@@ -16,6 +16,7 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
+    FlutterToast.showToast("Hi there!");
   }
 
   @override
